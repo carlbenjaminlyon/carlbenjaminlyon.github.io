@@ -11,7 +11,7 @@
  *          ex: makeContact(1, 'Max', 'Gaudin'); // => {id: 1, nameFirst: 'Max', nameLast: 'Gaudin'}
  *     
  *  b. Create a factory Function called makeContactList that returns an Object 
- *     that manages contacts. The contact-list object should have the following methods:
+ *     that manages contacts. The contact-list object should have the following methods:  
  *       
  *      1. length(): returns the number of contacts within the list.
  *      2. addContact(contact): takes a contact object to be added to the 
@@ -35,7 +35,17 @@
 
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
-
+    //init object literal to return data
+    //add keys for the above parameters which would be passed into the key values
+    //since the data passed in will always correspond with the parameters, we can name the keys the same as the parameter names, since keys themselves are immutable. 
+    //the keys will look at whatever has been passed into the parameter values
+    var contact = {
+        id: id,
+        nameFirst: nameFirst,
+        nameLast: nameLast
+    };
+        
+    return contact;
 } 
 
 
@@ -43,13 +53,17 @@ function makeContactList() {
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
-    var contacts;
+     //init array to contain contacts
+    var contacts = [];
     
     return {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
-        }
+        },
+        addContact: function(contact) {
+            
+        },
     }
 }
 

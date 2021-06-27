@@ -133,18 +133,21 @@ function createEndsWithFilter(endsWith) {
  */
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
-    //init external array to push values to
-    var arr = [];
-    //init return function
-    return function(modString) {
-        //init for loop to iterate over strings
-        for (var i = 0; i < modString.length; i++) {
-            arr.push(strings[i]);
-        }
-    return arr;  //this is really close to slide 11 on day 3
+    //init internal function(x)
+    //assign function(x) to var toModify
+    var toModify = function(x) {
+        //return modify(x)
+        return modify(x);
     }
+    //init internal var strings, assigning strings.map(toModify)
+    var strings = strings.map(toModify);
+        //return strings.
+        return strings;
+        //read more about .map
     
-    
+        
+
+   
     
     // YOUR CODE ABOVE HERE //
 }
