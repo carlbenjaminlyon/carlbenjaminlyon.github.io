@@ -133,24 +133,26 @@ function createEndsWithFilter(endsWith) {
  */
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
-    //init internal function(x)
-    //assign function(x) to var toModify
-    var toModify = function(x) {
-        //return modify(x)
-        return modify(x);
+    //init array to contain values
+    var arr = [];
+        //init for loop to iterate over strings parameter
+        for (var i = 0; i < strings.length; i++){
+            //init internal var to contain modified string at current index value 
+            var modString = modify(strings[i]);
+                //push modString value to arr
+                arr.push(modString);
+        }
+        //return arr
+        return arr;
     }
-    //init internal var strings, assigning strings.map(toModify)
-    var strings = strings.map(toModify);
-        //return strings.
-        return strings;
-        //read more about .map
+
     
         
 
    
     
     // YOUR CODE ABOVE HERE //
-}
+
 
 /** 
  * Given an Array of Strings and a Function designed to test the String in some 
@@ -163,12 +165,21 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
+    //init for loop to iterate over length of strings
+    for (var i = 0; i < strings.length; i++) {
+        // if current string value is not the same
+        if (test(strings[i]) === false) {
+            return false;
+            }
+        }
+        return true;
+    }
+
+        
     
-    
-    
-    
+
     // YOUR CODE ABOVE HERE //
-}
+
 
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 if((typeof process !== 'undefined') &&

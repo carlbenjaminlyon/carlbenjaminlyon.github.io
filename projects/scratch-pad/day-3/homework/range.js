@@ -34,34 +34,29 @@ function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
     //init array to contain integers
     var arr = [];
-    
-    // if (start === end) //put this at the end of the chain
-    if (start === end) {
-        //return "Same Value"
-        return "Same value";
-    }
-    //else if (start <= end)
-    else if (start < end) {
-         //for loop to iterate from lesser integer to greater integer
-        for (var i = start; i <= end; i++) {
-            //push i to array arr
-            arr.push[i];
-            
+    //if start is less than end
+    if (start < end){
+        // i begins at start value, continues while start value is less than or equal to end, increment by 1
+        for (var i = start; i <= end; i++){
+            //push current i value to array
+            arr.push(i);
         }
     }
-    //else
+    // else if start is greater than end
+    else if (start > end) {
+        // j begins at start value, continues while start value is greater or equal to end value, decrement by 1
+        for (var j = start; j >= end; j--){
+            //push current j value to array
+            arr.push(j);
+        }
+    }
     else {
-        //start => end, which is a conditional that wouldnt need to be here
-        //will need to set starting condition to var j
-        for (var j = end; j >= start; i--) {
-            //push j to array arr
-            arr.push[j];
-        }
-    //    return arr;
-    }
-    return arr;
-}
-       
+     console.log("issue");
+   }
+   //return array arr
+  return arr;
+ } 
+ 
 console.log(range(1, 5));
     
     //else

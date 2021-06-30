@@ -212,14 +212,14 @@ function sortAscending(stringOne, stringTwo) {
    // if stringOne is alphabetically higher than stringTwo
     if (stringOne < stringTwo) {
         //return 1
-        return 1;
+        return -1;
     }  
     // if strings are alphabetically equal, return 0
     else if (stringOne === stringTwo) {
         return 0;
     }
     else {
-        return -1;
+        return 1;
     }
     
 
@@ -244,14 +244,14 @@ function sortDescending(stringOne, stringTwo) {
     //literally the same thing as above, but if stringTwo is higher than stringOne, return 1
       if (stringOne > stringTwo) {
         //return 1
-        return 1;
+        return -1;
     }
     // if strings are alphabetically equal, return 0
     else if (stringOne === stringTwo) {
         return 0;
     }
     else {
-        return -1;
+        return 1;
     }
     
 
