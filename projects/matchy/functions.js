@@ -26,6 +26,7 @@ function search(arr, str){
     return null;
 }
 
+
 //////////////////////////////////////////////////////////////////////
 // Step 2 - Replace //////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
@@ -64,14 +65,17 @@ function remove(arr, name) {
 
 //int function add, parameters array of 'animals', and object of 'animal'
 function add(animals, animal){
+    //good example of control flow
+    //if both animal.name and species have a .length greater than 0
     if (animal.name.length > 0 && animal.species.length > 0){
-    //loop to iterate through animals arrays (trying bang operator search)
+    //loop to iterate through animals arrays
         for (var i = 0; i < animals.length; i++){
-    
+            //if name exists, return already exists. 
             if (animals[i].name.toLowerCase() === animal.name.toLowerCase()) {
                 return "Already exists";
             }
             else {
+                //els push the animal object to the animal array
                 animals.push(animal);
             }
         }
