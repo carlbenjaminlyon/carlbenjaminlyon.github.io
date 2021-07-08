@@ -34,17 +34,29 @@ function keysToString(object) {
 // Function 3 - Values to String /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+// var benObj = {
+//     name: "ben",
+//     test: {},
+//     last: "Lyon"
+// };
+// var objectOne = {a: "one", b: "two", ponies: "crayons", something: {}, dingle: "dangle"};
+
+//if value is not string, dont push it
+
 function valuesToString(object) { 
     //init interal array
     var arr = [];
-    //for in for object
     for (var key in object){
-        //push object key value to array
-        arr.push(object[key]);
+        //confirm key: value is a string, and if it is
+        if (typeof object[key] === "string"){
+            //push the value into the array
+            arr.push(object[key]);
+        }
     }
-    //return as string, concatenating using join(" ")
+    //RETURN OUTSIDE OF THE LOOP DUMMY
     return arr.join(" ");
 }
+// console.log(valuesToString(objectOne));
 
 
 
@@ -186,19 +198,22 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-    //if to check if key exists, and if does exist, if key value array has length
-    if(!array.friends.length){
-        var nameArray = [];
-        var notFriend = [];
-        for (var i = 0; i < array.friends.length; i++){
-            if (array.friends[i] !== name){
-                nameArray.push(name);
-                notFriend.push(array.friends[i]);
+        //init internal array
+        var arr = [];
+        //for array.length
+        for (var i = 0; i < array.length; i++){
+            //if object.name DOES NOT equal name
+            //AND
+            //is NOT a friend as passed in from the isFriend function
+            if (array[i].name !== name && !isFriend(name, array[i])){
+                // push the object.name into the array;
+                arr.push(array[i].name);
             }
         }
-        return notFriend;
+        //return array
+        return arr;
     }
-}
+
     
 
 
@@ -237,14 +252,14 @@ function removeProperties(object, array) {
         for (var i = 0; i < array.length; i++){
             //for loop to iterate through object
             for (var key in object){
-                //if key value is === to value in array
+                //array[i] is standing in as the string value
+                // for .hasOwnProperty to check if that string is a key
                 if (object.hasOwnProperty(array[i])){
                     //delete the property where the value was found
-                    delete object[key];
+                    delete object[array[i]];
                 }
         }
     }
-    return object;
 }
     
 

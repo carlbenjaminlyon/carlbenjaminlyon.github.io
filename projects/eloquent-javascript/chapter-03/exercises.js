@@ -2,17 +2,45 @@
 // min /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function min() {
+//Using Math.min, create function that returns smallest argument. Function to take two arguments and returns their minimum.
 
-}
+/*
+I: any two numbers
+O: returns smaller of the two numbers. 
+C: If numbers are equal to each other, return 0, needs Math.min 
+E: if numbers entered are negative, returns the more negative. (-2, -1), returns -2
+*/
+
+function min(num1, num2) {
+  if (num1 === num2){
+    return 0;
+  }
+  else {
+    return Math.min(num1, num2)
+  }
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 // isEven //////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+/*
+I: any number value
+O: boolean expression
+C: needs to call in on itself (recursion)
+E: 
+*/
 
-function isEven() {
-
-}
+function isEven(val) {
+  if (val === 0){
+    return true;
+  }
+  else if (val % 2 === 1 || val % 2 === -1){
+    return false;
+  }
+  else {
+    return isEven(val - 2);
+  }
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 // countChars //////////////////////////////////////////////////////////////////
