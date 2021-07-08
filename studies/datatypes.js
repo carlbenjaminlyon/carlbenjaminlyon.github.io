@@ -50,7 +50,42 @@
  *    are easily modifiable, without reassigning the entirety of the array/object. 
  *
  *
+ * 2. Copy by Reference vs Copy by Value
  *
- *
+ *    When you need to use data from one variable in another, there are two methods by which programming languages
+ *    do this, and the method that is chosen is by which data type is being copied. When a variable copies by value,
+ *    it means that when a simple data type is assigned to another variable, that new variable is given a new copy of
+ *    that data. What that means is, if a simple data type variable is intialized, then another variable copies it, 
+ *    when that new variable is called, it will contain it's own copy of the information from the original. This 
+ *    applies to simple data types only. 
+ *    
+ *    Copy by reference works a little differently, and only for complex data types. Rather than create a whole new
+ *    copy of the information in the referenced variable, copy by reference will refer back to that original variable
+ *    when the new variable is called upon. Meaning, that if the data in the original complex variable changes, the 
+ *    data in the referencing variable will change
  *
  */
+
+
+// 1. Simple Data Types //
+
+    //Type: Number
+    var num = 42;
+
+    //Type: String
+    var string = "Hello World!";
+
+    //Type: Boolean
+    var bool = true;
+
+// 2. Complex Data Types //
+
+    //Type: Array
+    var array = [42, 22, 12, 2, "a", "b", "c", "d", true];
+
+    //Type: Object
+    var object = {
+        firstName: "Ben",
+        lastName: "Lyon",
+        isTall: true    
+    };

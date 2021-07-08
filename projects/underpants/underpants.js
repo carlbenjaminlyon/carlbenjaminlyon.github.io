@@ -472,12 +472,6 @@ _.map = function(col, func){
     return arr;
 };
 
-
-
-
-
-
-
 /** _.pluck
 * Arguments:
 *   1) An array of objects
@@ -489,27 +483,24 @@ _.map = function(col, func){
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 
- var inputData = [
-        { name: "Ralph", age: 22},
-        { name: "Jimmy", age: 13},
-        { name: "Carla", age: 20}
-    ];
-
+ 
 
 _.pluck = function(array, property){
-    var arr = [];
+    // var arr = [];
     
     //use .map function. Not sure why braces matter like this here
     //names for the .map function matter here, element and property are their own words here for this method
     //element = current element being processed in array
-    
-    arr.map(function(element, property){
-        
+    //alt
+    return _.map(array, function(e, i, a){
+        return e[property];
     });
-    return [];
+    
+    // arr.map(function(array, property){
+        
+    // });
+    // return [];
 };
-
-
 
 
 /** _.every
@@ -606,16 +597,17 @@ _.reduce = function(array, func, seed){
         return seed;
         //else if seed exists
     } else {
-        //this loop needs to start at 0, because seed was given
+        // this loop needs to start at 0, because seed was given
         // for (var i = 0; i < array.length; i++){
         //     seed = func(seed, array[i], i);
         // }
+        //reminder to re-read on parameter statements during callbacks
         _.each(array, function(value, index){
                 seed = func(seed, value, index);
-            }
-        })
+            })
+        }
         return seed;
-    }
+    
 }
 
 //works as a loop
