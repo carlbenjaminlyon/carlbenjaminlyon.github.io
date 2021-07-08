@@ -582,6 +582,45 @@ _.pluck = function(array, property){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+_.reduce = function(array, func, seed){
+    //check if there is a seed
+    //needs to be specifically === undefined
+    //!operator will not work here
+    if(seed === undefined){
+        //if no seed, reassign seed to first element of array
+        seed = array[0];
+        //loop through array to get access to each element. If seed is undefined
+        //seed needs to still be equal to array[0], so start loop at i = 1
+        // for (var i = 1; i < array.length; i++){
+        //     //reassigning seed for the next iteration
+        //     seed = func(seed, array[i], i);
+        // }
+        //callback function for each. Takes in value, index, and array. Array optional
+        //since .each is looping for me, I dont need a loop for this.
+        _.each(array, function(value, index){
+            //to make sure we start at index 1, we need to set it so it wont include index 0
+            if(index !== 0){
+                seed = func(seed, value, index);
+            }
+        })
+        return seed;
+        //else if seed exists
+    } else {
+        //this loop needs to start at 0, because seed was given
+        // for (var i = 0; i < array.length; i++){
+        //     seed = func(seed, array[i], i);
+        // }
+        _.each(array, function(value, index){
+                seed = func(seed, value, index);
+            }
+        })
+        return seed;
+    }
+}
+
+//works as a loop
+
+
 
 /** _.extend
 * Arguments:

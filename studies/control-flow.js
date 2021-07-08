@@ -42,11 +42,11 @@
    if (x > y){
    	// print "X is greater than Y"
    	console.log("X is greater than Y.");
-   };
+   }
    //else-if to check other condition
    else if (x < y){
-   	// print "X is less than Y"
-   	console.log("X is less than Y");
+      //prints "X is less than Y"
+   	    console.log("X is less than Y");
    };
 
    /*
@@ -60,7 +60,7 @@
    	if (x > y){
    		// print "X is greater than Y"
    		console.log("X is greater than Y.");
-   };
+   }
   	//else to return if no further comparison is needed. 
    	else {
    		// print "X is less than Y"

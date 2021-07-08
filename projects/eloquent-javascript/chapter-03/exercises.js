@@ -46,16 +46,42 @@ function isEven(val) {
 // countChars //////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function countChars() {
+// var myString = "this is my string";
 
-}
+function countChars(str, char) {
+  //init internal counter
+  var counter = 0;
+  //for loop for string length
+  for (var i = 0; i < str.length; i++){
+    //if current string index === char
+    if (str[i] === char){
+      //update counter
+      counter++;
+    }
+  }
+  //return counter
+  return counter;
+};
+
+// console.log(countChars(myString));
 
 ////////////////////////////////////////////////////////////////////////////////
 // countBs /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function countBs() {
 
+//takes in a string as parameter
+function countBs(str) {
+  //init internal counter to return
+  var counter = 0;
+  //for loop for string length
+  for (var i = 0; i < str.length; i++){
+    //Only checking if string contains instances of 'B', specifically
+    if (str[i] === 'B'){
+      counter++;
+    }
+  }
+  return counter;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
