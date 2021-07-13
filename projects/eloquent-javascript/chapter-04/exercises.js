@@ -2,9 +2,26 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range() {
-
-}
+function range(start, end) {
+  //init internal array to contain all numbers from start up to AND INCLUDING end
+ var arr = [];
+ //return empty array if start === end
+ if (start === end){
+   return [];
+ }
+ else if (start < end){
+ //sum function to return sum total of all values in array
+      for (var i = start; i <= end; i++){
+        arr.push(i);
+      }
+ }
+ else if (start > end){
+      for (var i = end; i <= start; i++){
+        arr.push(i);
+      }
+ }
+ return arr;
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 // sum /////////////////////////////////////////////////////////////////////////

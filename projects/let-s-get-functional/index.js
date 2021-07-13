@@ -22,8 +22,11 @@ var _ = require('underbar'); //put in ('lodown-carlbenjaminlyon')
  */
 
 var maleCount = function(array) {
-
-};
+    var counter = 0;
+    for (var i = 0; i < array.length; i++){
+        if(_.filter())
+    }
+}; 
 
 var femaleCount;
 

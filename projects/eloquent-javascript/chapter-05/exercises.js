@@ -1,10 +1,37 @@
 // /////////////////////////////////////////////////////////////////////////////
 // flatten /////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
+//exercises on page 99
 
-function flatten() {
+//use reduce, pg 92 in EQJS
 
-}
+/*
+I: a nested array and a function
+O: single array with all elements from nested array
+C: use reduce method on pg 92
+E: Is array an array?
+   Is array.length < 0?
+*/
+
+//I think the .flat() function does this too
+
+function flatten(array, func) {
+  //init return array
+  let arr = [];
+  //check if array is array AND if array has value
+  if (Array.isArray(array)){
+    let current = start;
+    // for (let element of array){
+    //   if (func(array, combine, start)){
+    //     current = combine(current, element)
+      }
+    }
+  }
+  else {
+    return -1;
+  }
+
+};
 
 // /////////////////////////////////////////////////////////////////////////////
 // loop ////////////////////////////////////////////////////////////////////////

@@ -117,7 +117,6 @@ _.first = function(arr, num){
       //for loop array length
       for (var i = 0; i < arr.length; i++){
           //if num is a negative number && num is less than the length of the array
-          //why is the num < arr.length returning true 
           if (i > num && num < arr.length){
               return [];
           }
@@ -411,6 +410,8 @@ _.reject = function(arr, func){
 }
 */
 
+//see if we can incorporate .filter and .reject
+
 _.partition = function(arr, func){
     //init two arrays, one for true one for false
     var trueArr = [];
@@ -428,7 +429,7 @@ _.partition = function(arr, func){
     }
     //return the two arrays as a nested array
     return [trueArr, falseArr];
-}
+};
 
 
 
@@ -524,9 +525,31 @@ _.pluck = function(array, property){
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
-
-
-
+_.every = function(collection, func) {
+    if (func === undefined) {
+        for (var i = 0; i < collection.length; i++) {
+            if (collection[i] === false) {
+                return false;
+            }
+        }
+        return true;
+    }
+     else if(Array.isArray(collection)) {
+        for(var i = 0; i < collection.length; i++) {
+            if(!func(collection[i], i, collection)) {
+                return false;
+            }
+        } return true;
+ 
+    } else if ( typeof collection === "object") {
+        for(var key in collection) {
+            if(!func(collection[key], key, collection)) {
+                return false;
+            }
+        }
+       
+    } return true;
+};
 
 
 
@@ -552,6 +575,38 @@ _.pluck = function(array, property){
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
+
+_.some = function(collection, func) {
+    //if func === undefined
+    if (func === undefined) {
+        //then make sure at least one element is truthy
+        for (var i = 0; i < collection.length; i++) {
+            if (collection[i] === true) {
+                return true;
+            }
+        }
+        return false;
+    }
+    //else-if array IS array, and function is function
+     else if(Array.isArray(collection)) {
+        for(var i = 0; i < collection.length; i++) {
+            if(func(collection[i], i, collection)) {
+                return true;
+            }
+        } return false;
+ 
+    }
+    // else-if typeof collection is an object
+    else if (typeof collection === "object") {
+        for(var key in collection) {
+            if(func(collection[key], key, collection)) {
+                return true;
+            }
+        }
+       
+    } return false;
+};
+
 
 
 /** _.reduce
@@ -608,7 +663,7 @@ _.reduce = function(array, func, seed){
         }
         return seed;
     
-}
+};
 
 //works as a loop
 
@@ -628,6 +683,14 @@ _.reduce = function(array, func, seed){
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+//take in object and more objects, using ...obj function
+_.extend = function(obj, ...obj2) {
+    //assigning all objects entered to newObj
+    var newObj = Object.assign(obj,...obj2);
+    return newObj;
+};
+
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
