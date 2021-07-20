@@ -113,34 +113,29 @@ var sumBelow = function(n) {
 
 
 
-
-
-
-
-
-
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 //NOT INCLUSIVE TO X OR Y VALUES 
+
 var range = function(x, y) {
-  var arr = [];
-    //base case
-    if (x === y){
-      return [];
-    }
-    //recursive case
-    if (x < y){
-      arr.push(x + 1)
-      return range(x + 1, y - 1);
-    }
-    else if (x > y){
-      arr.push(x - 1)
-      return range(x - 1, y + 1);
-    }
-  return arr;
+  // var arr = [];
+  //   //base case
+  //   if (x === y){
+  //     return [];
+  //   }
+  //     // recursive case
+  //     if (x < y){
+  //       return range(x + 1, y)
+  //     }
+  //     else if (x > y){
+  //       return range(x, y - 1)
+  //     }
+    // return arr;
 };
 
-console.log(range(2, 10));
+//commenting out for errot checking, range = screateSpyProxy(range) is throwing reference error
+
+// console.log(range(2, 10));
 
 
 
@@ -151,23 +146,77 @@ console.log(range(2, 10));
 // 8^2 = 8 x 8 = 64.  Here, 8 is the base and 2 is the exponent.
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
+
 var exponent = function(base, exp) {
+  // //base
+  // if(exp === 0){
+  //   return 1;
+  // }
+  // else if (base === 1){
+  //   return base;
+  // }
+  
+  // //recursion
+  // if (exp < 0){
+  //   return base ** exponent(base, exp - 1);
+  // }
+  // else if (exp > 0){
+  //   return base ** exponent(base, exp + 1);
+  // }
+  
 };
+
+
 
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+    //base
+    // if ()
+    //recursion
+    //return n + powerOfTwo(n)
+    // return n + powerOfTwo(n);
 };
 
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
+    //base
+    if (!string.length){
+        return string;
+    }
+    //recursion
+    
+    //this is an easy return in just string methods
+    return reverse(string.substr(1)) + string.charAt(0);
+    //how to incorporate that into a return function?
+    // substring method needed
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  //base case
+  if (string.length === 1 || string.length === 2){
+    return true;
+  }
+  //recursion case
+  //accounting for case
+  if (string[0].toUpperCase() !== string[string.length - 1].toUpperCase()){
+    return false;
+  }
+  return palindrome(string.substring(1, string.length - 1))
+  
 };
+
+  //checks to see if first letter in string is === to last letter in string
+  //will return false if first letter is not the same as the last letter.
+  //will also return false if first letter is equal to last letter, but the next set of compared letters are not
+  //since we're removing the first and last value of the string on each return
+  //  Renderer // true
+  //   endere  // true
+  //    nder   // false, not a palindrome 
+
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
@@ -181,7 +230,16 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
+    if (y === 0){
+      return 0;
+    }
+    if (y < 0){
+      return -x + multiply(x, y + 1);
+    }
+    
+    return x + multiply(x, y - 1);
 };
+
 
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
@@ -202,21 +260,53 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  //base case
+  if (str1.length !== str2.length){
+    return false;
+  }
+  else if (str1[0] === str2[0]){
+    return true;
+  }
+  //recursion case
+  if (str1[0] === str2[0]){
+    return compareStr(str1.slice(1), str2.slice(1));
+  }
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function(str){
+  //base
+  if (str.length === 0){
+    return [];
+  }
+  //recursive
+  return [str[0]].concat(createArray(str.slice(1)));
 };
+
+
+
+
 
 // 17. Reverse the order of an array
 var reverseArr = function (array) {
+  //base
+  if (array.length === 0){
+    return [];
+  }
+  //recursion
+  return array[array.length - 1] + reverseArr(array.slice(1))
 };
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+  
+  //base
+  
+  //recursion
+  
 };
 
 // 19. Count the occurence of a value inside a list.
@@ -269,6 +359,16 @@ var nthFibo = function(n) {
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(input) {
+  var outputArray = [];
+  //base
+  if(input.length === 0){
+    return outputArray;
+  }
+  //recursion
+  outputArray.push(input[0].toUpperCase());
+  return capitalizeWords(input.slice(1));
+  
+  
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.

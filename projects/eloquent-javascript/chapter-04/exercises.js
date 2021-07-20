@@ -27,23 +27,55 @@ function range(start, end) {
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function sum() {
-
+function sum(array) {
+  var total = 0;
+  
+  if(!array.length){
+    return 0;
+  }
+  else {
+    for (var i = 0; i < array.length; i++){
+      total += array[i];
+    }
+  }
+    return total;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArray ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArray() {
-
+function reverseArray(array) {
+  var returnArray = [];
+  
+  if (!array.length){
+    return [];
+  }
+  else {
+    for (var i = array.length - 1; i >= 0; i--){
+      returnArray.push(array[i]);
+    }
+  }
+  
+    return returnArray;
+  
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArrayInPlace /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArrayInPlace() {
+function reverseArrayInPlace(array) {
+  
+  if(!array.length){
+    return [];
+  }
+  else {
+    //we can use .reverse in this one
+    array.reverse();
+  }
+    
+  return array;
 
 }
 
@@ -51,7 +83,17 @@ function reverseArrayInPlace() {
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
+function arrayToList(array) {
+  //set to null so last rest instance is null
+  let list = null;
+  
+  for (var i = array.length - 1; i >= 0; i--){
+    //why do we start backwards? 
+    //builds out last value with 3, then nests that object with 2, 1, etc. 
+    list = { value: array[i], rest: list };
+  }
+  
+  return list;
 
 }
 
@@ -59,8 +101,14 @@ function arrayToList() {
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function listToArray() {
-
+function listToArray(list) {
+  var arr = [];
+       //start cond. = list.  //stop condition when node = null //update value to = the next node.rest
+       //memorize this, because this is another stupid one. 
+  for (var node = list; node; node = node.rest){
+    arr.push(node.value);
+  }
+  return arr;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -83,7 +131,10 @@ function nth() {
 // deepEqual ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function deepEqual() {
+function deepEqual(val1, val2) {
+
+  
+
 
 }
 
