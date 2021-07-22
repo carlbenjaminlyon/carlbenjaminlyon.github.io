@@ -2,25 +2,25 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range(start, end) {
-  //init internal array to contain all numbers from start up to AND INCLUDING end
- var arr = [];
- //return empty array if start === end
- if (start === end){
-   return [];
- }
- else if (start < end){
- //sum function to return sum total of all values in array
-      for (var i = start; i <= end; i++){
+function range(start, end, step = 1) {
+// init internal array to contain all numbers from start up to AND INCLUDING end
+  var arr = [];
+//if start = end, OR step is less than 0 regardless of comparison of start and end
+  if (start === end || step < 0){
+     arr = arr;
+  }
+  //if step is greater than 0 AND end greater than start
+  else if (start < end){
+      for (var i = start; i <= end; i += step){
         arr.push(i);
+        }
       }
- }
- else if (start > end){
-      for (var i = end; i <= start; i++){
-        arr.push(i);
+      else if (start > end){
+        for (var i = start; i >= end; i += step){
+          arr.push(i);
       }
- }
- return arr;
+  }
+  return arr;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -115,28 +115,99 @@ function listToArray(list) {
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function prepend() {
+// function prepend(val, arr) {
+//   var array = [val].concat(arr);
+//   var list = null;
+  
+//   for (var i = array.length - 1; i >= 0; i--){
+//     list = { value: array[i], rest: list };
+//   }
+//   return list;
+// } //this is dumb as hell that this doesnt pass. This works in Repl. The directions are bad.
 
+function prepend(element, list){
+  //all this does is take element and put it onto the first element
+  var elementList = {
+   	value: element,
+   	//then takes in an existing list and tacks it onto the end.
+   	//this just takes an existing list and puts it into another layer
+   	rest: list
+  };
+  return elementList;
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function nth() {
+/*
+I: list and a value
+O: return value + 1
+C: 
+E:
+*/
 
+
+
+function nth(list, val){
+  for(var node = list; node; node = node.rest){
+    if (val == 0){
+      return node.value;
+    }
+    else if (node.rest == null){
+      return undefined;
+    }
+    else {
+      return nth(list.rest, val - 1);
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // deepEqual ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
+/*
+I: two values of any type 
+O: returns true if passed in values are the same value, or complex data types with same properties
+C: needs to check on 'null' as well, b/c that will return an object
+E:
+*/
+
+
 function deepEqual(val1, val2) {
-
   
-
+  var val1Container;
+  var val2Container;
+  //&& comparison for array type b/c === wont cut it here
+  if (Array.isArray(val1) && Array.isArray(val2)) {
+    return true;
+  }
+  
+  else if (!Array.isArray(val1) && !Array.isArray(val2)
+      && val1 !== null && val2 !== null 
+      && typeof val1 == "object" && typeof val2 == "object") {
+        
+        for (var key in val1){
+          val1Container = val1[key];
+        }
+        for (var key in val2){
+          val2Container = val2[key];
+        }
+        
+  if(typeof val1Container === typeof val2Container 
+     && val1Container !== null && val2Container !== null){
+    return true;
+  }
+            
+    
+      }
+  return false;
 
 }
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////

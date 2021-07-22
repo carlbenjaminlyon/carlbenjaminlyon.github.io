@@ -28,14 +28,16 @@
  *                is either not initialized, or is unreachable. An example of this would be for a variable to 
  *                be printed to console before it is assigned data. 
  *
- *    null -      Null refers to a data type without value in it. The data type exists, but it has not been populated.
+ *    null -      Null refers to an object data type without value in it. The data type exists, but it has not been populated.
+ *                When a variable is initialized with null, it is now known to exist, but has no type or value.
  *                Think of this as a paper towel holder with an empty roll on it. 
  *
  *    NaN - Stands for 'Not a Number'. This occurs when an expected numeric data type is called, but the called 
  *          data type is not a number. 
  *
  *    Infinity - Infinity is a global data type that is greater than any other number. This number is presented the 
- *               to represent a numerical value that exceeds the upper limit of the floating point numbers.
+ *               to represent a numerical value that exceeds the upper limit of the floating point numbers. Both
+ *               Infinity and -Infinity are used as comparison points, not as writable values. 
  *
  *    Negative Infinity - This is the same as inifinity, but in the opposite direction. 
  *
@@ -89,3 +91,46 @@
         lastName: "Lyon",
         isTall: true    
     };
+
+// 3. Functions //
+
+    //Type: Declared Function (Function Statement)
+    function multiply(val1, val2){
+        return val1 * val2;
+    }
+    
+    multiply(5, 5);
+    
+    //Type: Anonymous Function Expression
+    var x = function(y){
+        return y + y;
+    }
+    
+    x(50);
+    
+    //Type: Named Function Expression
+    var myFunction = function myNamedFunction(){
+        return "This is a named function expression!";
+    }
+    
+    myFunction();
+    
+// 4. Undefined //
+
+    var theUndefinedVariable; //Has not been assigned data
+    
+    console.log(theUndefinedVariable); // --> undefined
+    
+// 5. null //
+    
+    var obj = null; // --> null
+    
+// 6. NaN
+
+    Number.isNaN("Hello World!"); // --> false  
+    
+// 7. Infinity and -Infinity
+    
+    console.log(Infinity); // --> returns string "Infinity"
+    
+    console.log(Math.log(0)); // --> returns string "-Infinity"

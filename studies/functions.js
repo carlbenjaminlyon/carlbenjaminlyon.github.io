@@ -17,18 +17,18 @@
  *    to perform the desired result. Once we've given it a function body, we must 'invoke' the function by calling it in some manner. 
  *	  Functions will not take any action until they're invoked, or 'called'. For our immediate example here, we will create a function  
  *    called 'print', which will take in data as its 'parameter', and then return it to the console.
- *
- *								function print(string){
- *									console.log(string);
- *								};
- *
- *    Now that we have defined our function, let's invoke it:
- *
- *
- *								print("Hello World!");
- *									//prints "Hello World!"
- *											
- *
+ */
+ 								function print(string){
+ 									console.log(string);
+ 								};
+ 
+     // Now that we have defined our function, let's invoke it:
+ 
+ 
+ 								print("Hello World!");
+ 									//prints "Hello World!"
+ 											
+/*
  *    Having called this function (or invoked it), and having passed in a string value in its parameter, the function will now return
  *    "Hello World!" to the console. 
  *
@@ -50,19 +50,19 @@
  *    A function expression, is where we assign a function to a variable when we declare it. We previously talked about 
  *    expressions, where an expression is a set of literals, variables, operators, and expressions that evaluate to a single 
  *    value. We can create our function expression by simply assigning the function to a variable, like so:
- *
- *												// anonymous function
- *
- *												var myFunction = function(param1, param2){
- *													// code to execute here
- *												};
- *
- *												// named function expression
- *
- *												var myFunction = function namedFunction(param1, param2){
- *													// code to execute here
- *												};
- *
+ */
+ 												// anonymous function
+ 
+ 												var myFunction = function(param1, param2){
+ 													// code to execute here
+ 												};
+ 
+ 												// named function expression
+ 
+ 												var myFunction = function namedFunction(param1, param2){
+ 													// code to execute here
+ 												};
+/*
  *    When the function finishes its execution, the value returned by it will resolve to the variable 'myFunction'. One of the 
  *    benefits of creating a named function expression is that in case we encounter an error, the stack trace will contain
  *    the name of the function, making it easier to find the origin of the error. 
@@ -94,16 +94,16 @@
  *    child functions in our functions - meaning an internal function that processes data passed into it by the parent function. 
  *    To create closure in a function, the child function must share a variable with the parent function, meaning the child 
  *    function is able to access and process data from the parent function. An example of this is as follows
- *
- *                                             function outerFunction(){
- *													var outerVariable = 10;
- *
- *														function innerFunction(){
- *															alert(outerVariable);
- *														}
- *														return innerFunction;
- *												};
- *
+ */
+                                              function outerFunction(){
+ 													var outerVariable = 10;
+ 
+ 														function innerFunction(){
+ 															alert(outerVariable);
+ 														}
+ 														return innerFunction;
+ 												};
+/*
  *    In this example, the innerFunction references the parent functions variable 'outerVariable'. This creates one example of closure. 													
  *    What this means is that child functions with closure are able to see and modify variables in both the parent, AND the global
  *    scope. However, nothing in the global scope can affect the variables inside either the parent or child function. 

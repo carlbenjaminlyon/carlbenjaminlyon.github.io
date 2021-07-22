@@ -76,6 +76,8 @@
 // 4. Switch statements 
 	//Initialize variable x, assign value of 1
 	var x = 1
+	//Initialize text variable to contain string data passed in from case: statements
+	var text = "";
 	//Initialize switch statement to return 'Off' when 0, and 'On' when 1
 	switch(x) {
 		// if x = 0

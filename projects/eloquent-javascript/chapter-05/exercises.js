@@ -17,19 +17,9 @@ E: Is array an array?
 
 function flatten(array, func) {
   //init return array
-  let arr = [];
-  //check if array is array AND if array has value
-  if (Array.isArray(array)){
-    let current = start;
-    // for (let element of array){
-    //   if (func(array, combine, start)){
-    //     current = combine(current, element)
-      }
-    }
-  }
-  else {
-    return -1;
-  }
+  let flatAss = array.reduce(function(count, array){
+    
+  }, [])
 
 };
 
