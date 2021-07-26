@@ -15,11 +15,8 @@ E: Is array an array?
 
 //I think the .flat() function does this too
 
-function flatten(array, func) {
-  //init return array
-  let flatAss = array.reduce(function(count, array){
-    
-  }, [])
+function flatten(array) {
+  return array.reduce((flatArray, current) => flatArray.concat(current), []);
 
 };
 
@@ -27,24 +24,51 @@ function flatten(array, func) {
 // loop ////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function loop() {
-
+function loop(start, test, update, body) {
+  for (let value = start; test(value); value = update(value)) {
+    body(value);
+  }
 }
 
 // /////////////////////////////////////////////////////////////////////////////
 // every ///////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function every() {
-
+function every(array, test) {
+  for (let arrValue of array) { //iterates through array using a for of loop
+    if (!test(arrValue)) return false; //exits loop first time test fails
+  }
+  return true; // if test fails to fail, function returns true
 }
 
 // /////////////////////////////////////////////////////////////////////////////
 // dominantDirection ///////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function dominantDirection() {
-
+function dominantDirection(str) {
+  
+  const arr = countBy(str, function(char){
+    //get the unicode value for the current character
+    const unicode = char.charCodeAt();
+    // find the script obj from the unicode character
+    const script = characterScript(unicode);
+    // returning the name of the script direction or null
+    
+    if(script !== null) {
+      return script.direction;
+    } 
+    else {
+      return script;
+    }
+  });
+  
+  //find the next highest count by sorting
+  arr.sort(function(a, b) {
+    return b.count - a.count; //need to append with .count else will sort first digit first
+  });
+  
+  return arr[0].name; //returns dominant result
+  
 }
 
 // /////////////////////////////////////////////////////////////////////////////

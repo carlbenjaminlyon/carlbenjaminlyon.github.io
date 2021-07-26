@@ -47,7 +47,7 @@
                         //Accessing let after it is initialized and declared
                         console.log(value); // --> 25
                         //Re-assigning let value
-                        let value = [1, 2]; // --> SyntaxError: Identifier 'value' has already been declared
+                        // let value = [1, 2]; // --> SyntaxError: Identifier 'value' has already been declared
                         
                         //new let variable containing an array
                         let thisArray = [1, 2, 3, 4, 5]

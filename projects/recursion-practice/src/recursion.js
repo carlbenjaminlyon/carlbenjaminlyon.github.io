@@ -174,10 +174,14 @@ var exponent = function(base, exp) {
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
     //base
-    // if ()
+    if (n == 1){
+      return true;
+    }
     //recursion
-    //return n + powerOfTwo(n)
-    // return n + powerOfTwo(n);
+     else if (n < 2){
+      return false;
+    }
+    return powerOfTwo(n/2);
 };
 
 // 9. Write a function that accepts a string a reverses it.
@@ -261,27 +265,25 @@ var gcd = function(x, y) {
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
   //base case
-  if (str1.length !== str2.length){
-    return false;
-  }
-  else if (str1[0] === str2[0]){
+  if (str1.length === 0 && str2.length === 0){
     return true;
   }
-  //recursion case
-  if (str1[0] === str2[0]){
+  else if (str1[0] === str2[0]){
     return compareStr(str1.slice(1), str2.slice(1));
   }
+  
+  return false;
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str){
+var createArray = function(string){
   //base
-  if (str.length === 0){
+  if (string.length === 0){
     return [];
   }
-  //recursive
-  return [str[0]].concat(createArray(str.slice(1)));
+  //recursion
+  return [string[0]].concat(createArray(string.slice(1)));
 };
 
 
@@ -289,13 +291,14 @@ var createArray = function(str){
 
 
 // 17. Reverse the order of an array
-var reverseArr = function (array) {
+var reverseArr = function(array) {
   //base
   if (array.length === 0){
     return [];
   }
   //recursion
-  return array[array.length - 1] + reverseArr(array.slice(1))
+  //return array by popping off the last value, making last value the new value to look at
+  return [array.pop()].concat(reverseArr(array));
 };
 
 // 18. Create a new array with a given value and length.
@@ -304,20 +307,43 @@ var reverseArr = function (array) {
 var buildList = function(value, length) {
   
   //base
-  
+  if (length === 0){
+    return [];
+  }
   //recursion
+  //concatenates an array, while returning the value and subtracting one from the length value.
+  return [value].concat(buildList(value, length - 1));
   
 };
 
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
-var countOccurrence = function(array, value) {
+var countOccurrence = function(array, value, count = 0) {
+  // var counter = 0;
+  //base
+  if (array.length === 0){
+    return count;
+  }
+  //recursion
+  else if (array[0] === value){
+    count++;
+  }
+    
+  return countOccurrence(array.slice(1), value, count);
+  
 };
 
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback) {
+  //base
+  if (array.length === 0){
+    return [];
+  }
+  //recursion
+  return [callback(array[0])].concat(rMap(array.slice(1), callback));
+  
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
@@ -353,27 +379,38 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+  
+  
+  
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(input) {
-  var outputArray = [];
+  // var outputArray = [];
   //base
   if(input.length === 0){
-    return outputArray;
+    return [];
   }
   //recursion
-  outputArray.push(input[0].toUpperCase());
-  return capitalizeWords(input.slice(1));
-  
+  // takes array[0] to uppercase, brackets indicate data type
+  // .concat to remainder of array, with iterator being the .slice for the rest of the array
+  return [input[0].toUpperCase()].concat(capitalizeWords(input.slice(1)));  
   
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
 var capitalizeFirst = function(array) {
+  //base
+  if(array.length === 0){
+    return [];
+  }
+  //recursion
+
+  return [array[0].charAt(0).toUpperCase() + array[0].slice(1)].concat(capitalizeFirst(array.slice(1)));
+  
 };
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
@@ -395,7 +432,25 @@ var flatten = function(arrays) {
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
-var letterTally = function(str, obj) {
+
+//remember that you may need to modify the parameters to return the data type you want
+var letterTally = function(str, obj = {}) {
+  //init var to contain string charAt(0)
+  // var firstChar = str.charAt(0);
+  //base
+  if (str.length === 0){
+    return obj;
+  }
+  //recursive
+  if(!obj[str.charAt(0)]){
+    obj[str.charAt(0)] = 1;
+  }
+  else {
+    obj[str.charAt(0)]++;
+  }
+  
+  return letterTally(str.slice(1), obj);
+
 };
 
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
@@ -404,6 +459,20 @@ var letterTally = function(str, obj) {
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
 var compress = function(list) {
+  //base
+  if(list.length === 0){
+    return [];
+  }
+  //recursion
+  //if a != b
+  if (list[0] !== list[1]){
+    //then return index 0, 
+    return [list[0]].concat(compress(list.slice(1))); 
+  }
+  // else return the list with the duplicate index sliced
+  return compress(list.slice(1));
+  
+  
 };
 
 // 32. Augment every element in a list with a new value where each element is an array
@@ -416,19 +485,63 @@ var augmentElements = function(array, aug) {
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
 var minimizeZeroes = function(array) {
+  //base
+  if (array.length === 0){
+    return [];
+  }
+  //recursive
+  if (array[0] !== array[1]){
+    //then return index 0, 
+    return [array[0]].concat(minimizeZeroes(array.slice(1))); 
+  }
+  // else return the list with the duplicate index sliced
+  return minimizeZeroes(array.slice(1));
 };
+
+//expected output for this one is really to remove all instances of 0 where the next value is also 0
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
 // their original sign.  The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
 var alternateSign = function(array) {
+  //base
+  if (array.length === 0){
+    return [];
+  }
+  
+  //recursion. Needs to return the first index of array as positive value, and return every other value as negative
+  // [1, -2, 1, -1, 3, 1]
+  if (array.length === 1) {
+    return [Math.abs(array[0])].concat(alternateSign(array.slice(1)));
+  } 
+  else { 
+    return [Math.abs(array[0])].concat([-Math.abs(array[1])]).concat(alternateSign(array.slice(2)));
+  }
 };
+
+//this is returning [ 2, 7, -8, -3, 1, -4 ]
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
+
+
 var numToText = function(str) {
+  //internal array to convert with
+  var numberArray = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+  //base
+  if (str.length === 0){
+    return "";
+  }
+  //recursion
+  if (typeof str.charAt(0) !== "number"){
+    return str.charAt(0) + numToText(str.slice(1));
+  }
+  else {
+    
+  }
+  
 };
 
 // *** EXTRA CREDIT ***
