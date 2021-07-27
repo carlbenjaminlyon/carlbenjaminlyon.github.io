@@ -378,6 +378,16 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+  //base
+  //if n === 0, just return 0
+  if (n < 0){
+    return null;
+  }
+  else if (n === 0 || n === 1){
+    return n;
+  }
+  //recursion
+  return nthFibo(n - 1) + nthFibo(n - 2);
   
   
   
@@ -427,6 +437,7 @@ var nestedEvenSum = function(obj) {
 // 29. Flatten an array containing nested arrays.
 // Example: flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
 var flatten = function(arrays) {
+  
 };
 
 // 30. Given a string, return an object containing tallies of each letter.
@@ -441,10 +452,13 @@ var letterTally = function(str, obj = {}) {
     return obj;
   }
   //recursive
+  //if key:value pair does not exist
   if(!obj[str.charAt(0)]){
+    //create it with the char at specified index as key, initialize value as 1
     obj[str.charAt(0)] = 1;
   }
   else {
+    //else if key already exists, update value
     obj[str.charAt(0)]++;
   }
   
