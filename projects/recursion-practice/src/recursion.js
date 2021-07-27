@@ -120,17 +120,19 @@ var sumBelow = function(n) {
 var range = function(x, y) {
   // var arr = [];
   //   //base case
-  //   if (x === y){
-  //     return [];
-  //   }
-  //     // recursive case
-  //     if (x < y){
-  //       return range(x + 1, y)
-  //     }
-  //     else if (x > y){
-  //       return range(x, y - 1)
-  //     }
-    // return arr;
+  // if x = y, or if x is one digit away from y
+    if (x === y || x + 1 === y || x - 1 === y){
+      //return array
+      return [];
+    }
+    
+    // recursive case
+    if (x > y){
+      return range(x, y + 1).concat(y + 1);
+    }
+    else if (x < y){
+      return range(x, y - 1).concat(y - 1);
+    }
 };
 
 //commenting out for errot checking, range = screateSpyProxy(range) is throwing reference error
@@ -148,21 +150,18 @@ var range = function(x, y) {
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 
 var exponent = function(base, exp) {
-  // //base
-  // if(exp === 0){
-  //   return 1;
-  // }
-  // else if (base === 1){
-  //   return base;
-  // }
-  
-  // //recursion
-  // if (exp < 0){
-  //   return base ** exponent(base, exp - 1);
-  // }
-  // else if (exp > 0){
-  //   return base ** exponent(base, exp + 1);
-  // }
+  //base
+  if(exp === 0){
+    return 1;
+  }
+  else if (exp < 0){
+    exp = (exp * -1);
+  //recursion
+    return 1 / (base * exponent(base, exp - 1));
+  }
+  else {
+    return base * exponent(base, exp - 1);
+  }
   
 };
 
@@ -181,7 +180,7 @@ var powerOfTwo = function(n) {
      else if (n < 2){
       return false;
     }
-    return powerOfTwo(n/2);
+    return powerOfTwo(n / 2);
 };
 
 // 9. Write a function that accepts a string a reverses it.
@@ -526,22 +525,33 @@ var alternateSign = function(array) {
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
 
-
 var numToText = function(str) {
-  //internal array to convert with
-  var numberArray = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
-  //base
-  if (str.length === 0){
-    return "";
-  }
-  //recursion
-  if (typeof str.charAt(0) !== "number"){
-    return str.charAt(0) + numToText(str.slice(1));
-  }
-  else {
+  //internal const to contain
+  const numToTextObj = {
+    0: 'zero',
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine'
+  };
+
+    //base, return string when str.length === 0
+    if (str.length === 0) {
+        return '';
+    }
+    //recursive
+    //if the number value from the string is a key within the internal obj numToTextObj
+    if (numToTextObj[str[0]]) {
+        //return the key: value and return the remainder of the substring
+        return numToTextObj[str[0]] + numToText(str.substring(1));
+    }
     
-  }
-  
+    return str[0] + numToText(str.substring(1));
 };
 
 // *** EXTRA CREDIT ***
